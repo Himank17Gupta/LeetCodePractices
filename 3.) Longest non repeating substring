@@ -1,0 +1,38 @@
+>>Given a string, find the length of the longest substring without repeating characters.
+
+Example 1:
+
+Input: "abcabcbb"
+Output: 3 
+Explanation: The answer is "abc", with the length of 3. 
+Example 2:
+
+Input: "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+
+Solution :
+            O(n) ---moving index method
+
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+     unordered_map< char, int > mp;
+        int index=0,size=0;
+        for(int i=0;i<s.length();i++){
+         if(!mp[s[i]]){
+             mp[s[i]]=i+1;
+             if(i+1-index>size){size=i+1-index;}
+         }
+          else{//cout<<"else";
+                 index=mp[s[i]]>index?mp[s[i]]:index;
+               //  cout<<index;
+                 mp[s[i]]=i+1;
+                 if(i+1-index>size){size=i+1-index;}
+             }
+         }   
+        
+     return size;
+    }
+};
